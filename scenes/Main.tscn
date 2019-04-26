@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://scripts/Cube.gd" type="Script" id=1]
+[ext_resource path="res://scripts/cube.gd" type="Script" id=1]
 
 [sub_resource type="PlaneMesh" id=1]
 
@@ -64,7 +64,7 @@ render_target_v_flip = true
 [node name="CurrentText" type="Label" parent="Cube/Front/Viewport"]
 margin_right = 40.0
 margin_bottom = 14.0
-text = "Current"
+text = "First"
 
 [node name="Left" type="MeshInstance" parent="Cube"]
 editor/display_folded = true
