@@ -1,0 +1,117 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scripts/start_menu.gd" type="Script" id=1]
+
+[node name="StartMenu" type="Node"]
+script = ExtResource( 1 )
+
+[node name="GUI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -0.950012
+margin_bottom = -0.950012
+
+[node name="Tabs" type="TabContainer" parent="GUI"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = -100.0
+margin_right = 200.0
+margin_bottom = 100.0
+rect_pivot_offset = Vector2( -602, -75 )
+
+[node name="Login" type="VBoxContainer" parent="GUI/Tabs"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="UsernameLine" type="LineEdit" parent="GUI/Tabs/Login"]
+margin_right = 392.0
+margin_bottom = 24.0
+clear_button_enabled = true
+placeholder_text = "Username"
+
+[node name="PasswordLine" type="LineEdit" parent="GUI/Tabs/Login"]
+margin_top = 28.0
+margin_right = 392.0
+margin_bottom = 52.0
+secret = true
+clear_button_enabled = true
+placeholder_text = "Password"
+
+[node name="LoginInfo" type="Label" parent="GUI/Tabs/Login"]
+margin_top = 56.0
+margin_right = 392.0
+margin_bottom = 70.0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+align = 1
+valign = 1
+
+[node name="LoginButton" type="Button" parent="GUI/Tabs/Login"]
+margin_top = 74.0
+margin_right = 392.0
+margin_bottom = 94.0
+text = "Login"
+
+[node name="RegistrationInfo" type="Label" parent="GUI/Tabs/Login"]
+margin_top = 98.0
+margin_right = 392.0
+margin_bottom = 112.0
+custom_colors/font_color = Color( 0, 1, 0.0862745, 1 )
+
+[node name="Registration" type="VBoxContainer" parent="GUI/Tabs"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="EmailLine" type="LineEdit" parent="GUI/Tabs/Registration"]
+margin_right = 392.0
+margin_bottom = 24.0
+clear_button_enabled = true
+placeholder_text = "E-Mail"
+
+[node name="PasswordLine" type="LineEdit" parent="GUI/Tabs/Registration"]
+margin_top = 28.0
+margin_right = 392.0
+margin_bottom = 52.0
+secret = true
+clear_button_enabled = true
+placeholder_text = "Password"
+
+[node name="FirstNameLine" type="LineEdit" parent="GUI/Tabs/Registration"]
+margin_top = 56.0
+margin_right = 392.0
+margin_bottom = 80.0
+clear_button_enabled = true
+placeholder_text = "First name"
+
+[node name="SecondNameLine" type="LineEdit" parent="GUI/Tabs/Registration"]
+margin_top = 84.0
+margin_right = 392.0
+margin_bottom = 108.0
+clear_button_enabled = true
+placeholder_text = "Second name"
+
+[node name="RegistrationInfo" type="Label" parent="GUI/Tabs/Registration"]
+margin_top = 112.0
+margin_right = 392.0
+margin_bottom = 126.0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+
+[node name="RegistrationButton" type="Button" parent="GUI/Tabs/Registration"]
+margin_top = 130.0
+margin_right = 392.0
+margin_bottom = 150.0
+text = "Register"
+
+[connection signal="pressed" from="GUI/Tabs/Login/LoginButton" to="." method="_on_LoginButton_pressed"]
+[connection signal="pressed" from="GUI/Tabs/Registration/RegistrationButton" to="." method="_on_RegistrationButton_pressed"]
