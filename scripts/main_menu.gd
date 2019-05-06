@@ -1,7 +1,7 @@
 extends Node
 
 onready var HelloLabel: Label = $GUI/HelloLabel
-onready var CategoryContainer: VBoxContainer = $GUI/ScrollContainer/VBoxContainer
+onready var CategoryContainer: VBoxContainer = $GUI/Tabs/Categories/VBoxContainer
 
 var category = preload("res://scenes/category.tscn")
 

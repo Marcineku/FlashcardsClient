@@ -1,10 +1,10 @@
 extends Node
 
 class RequestType:
-	const LOGIN = "login"
-	const USER_DATA = "user_data"
-	const REGISTER = "register"
-	const GET_CATEGORIES = "get_categories"
+	const LOGIN: String = "login"
+	const USER_DATA: String = "user_data"
+	const REGISTER: String = "register"
+	const GET_CATEGORIES: String = "get_categories"
 
 const HOST_URL: String = "http://localhost:9000/"
 const AUTH_URL: String = "authorization-service/"
@@ -14,11 +14,15 @@ const USER_DATA_URL: String = HOST_URL + AUTH_URL + "users/current"
 const REGISTER_URL: String = HOST_URL + DB_URL + "users"
 const CATEGORIES_URL: String = HOST_URL + DB_URL + "categories/"
 
+var _http_requests: Dictionary = {
+	"login_request": HTTPRequest.new(),
+	"user_data_request": HTTPRequest.new(),
+	"register_request": HTTPRequest.new(),
+	"get_categories_request": HTTPRequest.new(),
+	#"create_new_categorie_request": HTTPRequest.new()
+}
+
 var _http_client: HTTPClient = HTTPClient.new()
-var _login_request: HTTPRequest = HTTPRequest.new()
-var _user_data_request: HTTPRequest = HTTPRequest.new()
-var _register_request: HTTPRequest = HTTPRequest.new()
-var _get_categories_request: HTTPRequest = HTTPRequest.new()
 
 var _token: String = ""
 
@@ -33,17 +37,14 @@ signal register_request_ok(response)
 signal register_request_error(error_message)
 signal get_categories_request_ok(response)
 signal get_categories_request_error(error_message)
+signal create_new_categorie_request_ok(response)
+signal create_new_categorie_request_error(error_message)
 
 func _ready():
-	_login_request.connect("request_completed", self, "_on_login_request_completed")
-	_user_data_request.connect("request_completed", self, "_on_user_data_request_completed")
-	_register_request.connect("request_completed", self, "_on_register_request_completed")
-	_get_categories_request.connect("request_completed", self, "_on_get_categories_request_completed")
-	
-	add_child(_login_request)
-	add_child(_user_data_request)
-	add_child(_register_request)
-	add_child(_get_categories_request)
+	var request_names = _http_requests.keys();
+	for request_name in request_names:
+		_http_requests[request_name].connect("request_completed", self, "_on_" + request_name + "_completed")
+		add_child(_http_requests[request_name])
 
 func _get_response(response_code: int, body: PoolByteArray, request_type: String) -> Dictionary:
 	var parseResult: JSONParseResult = JSON.parse(body.get_string_from_utf8())
@@ -80,7 +81,7 @@ func _on_login_request_completed(result: int, response_code: int, headers: PoolS
 	var user_data_headers: PoolStringArray = [
 		"Authorization: " + _token
 	]
-	_user_data_request.request(USER_DATA_URL, user_data_headers, false, HTTPClient.METHOD_GET)
+	_http_requests["user_data_request"].request(USER_DATA_URL, user_data_headers, false, HTTPClient.METHOD_GET)
 	
 	get_tree().change_scene_to(preload("res://scenes/main_menu.tscn"))
 
@@ -114,7 +115,7 @@ func login(username: String, password: String):
 		"password": password,
 		"grant_type": "password"
 	}
-	_login_request.request(LOGIN_URL, headers, false, HTTPClient.METHOD_POST, _http_client.query_string_from_dict(body))
+	_http_requests["login_request"].request(LOGIN_URL, headers, false, HTTPClient.METHOD_POST, _http_client.query_string_from_dict(body))
 
 func logout():
 	_token = ""
@@ -132,10 +133,10 @@ func register(email: String, password: String, first_name: String, second_name: 
 		"firstName": first_name,
 		"secondName": second_name
 	}
-	_register_request.request(REGISTER_URL, headers, false, HTTPClient.METHOD_POST, JSON.print(body))
+	_http_requests["register_request"].request(REGISTER_URL, headers, false, HTTPClient.METHOD_POST, JSON.print(body))
 
 func get_categories():
 	var headers: PoolStringArray = [
 		"Authorization: " + _token
 	]
-	_get_categories_request.request(CATEGORIES_URL, headers, false, HTTPClient.METHOD_GET)
+	_http_requests["get_categories_request"].request(CATEGORIES_URL, headers, false, HTTPClient.METHOD_GET)

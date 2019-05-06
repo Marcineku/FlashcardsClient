@@ -27,23 +27,39 @@ margin_bottom = 56.0
 text = "Logout"
 
 [node name="Label" type="Label" parent="GUI"]
-margin_left = 472.417
-margin_top = 59.364
-margin_right = 656.417
-margin_bottom = 73.364
+margin_left = 475.471
+margin_top = 55.0925
+margin_right = 542.471
+margin_bottom = 69.0925
 text = "Categories"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="GUI"]
+[node name="Tabs" type="Tabs" parent="GUI"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -12.0
+margin_right = 20.0
+margin_bottom = 12.0
+
+[node name="Categories" type="ScrollContainer" parent="GUI/Tabs"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -100.0
-margin_top = -219.357
+margin_top = -218.5
 margin_right = 100.0
-margin_bottom = 217.643
+margin_bottom = 218.5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/Tabs/Categories"]
 custom_constants/separation = 120
+
+[node name="Collections" type="ScrollContainer" parent="GUI/Tabs"]
+margin_right = 12.0
+margin_bottom = 12.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/Tabs/Collections"]
 
 [connection signal="pressed" from="GUI/LogoutButton" to="." method="_on_LogoutButton_pressed"]
