@@ -36,3 +36,12 @@ func _on_Anim_animation_started(anim_name: String) -> void:
 func _on_Anim_animation_finished(anim_name: String) -> void:
 	if anim_name == _anim_name:
 		_anim_playing = false
+
+func play() -> void:
+	if !_anim_playing:
+		_wrd_iter += 1
+		if _wrd_iter >= _arr.size():
+			_wrd_iter = 0
+		PreviousText.text = CurrentText.text
+		CurrentText.text = _arr[_wrd_iter]
+		Anim.play(_anim_name)

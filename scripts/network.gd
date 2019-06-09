@@ -11,6 +11,7 @@ class RequestType:
 	const UPDATE_COLLECTION: String = "update_collection"
 	const GET_WORDS: String = "get_words"
 	const CREATE_NEW_WORD: String = "create_new_word"
+	const WORD_ANSWER: String = "word_answer"
 
 const HOST_URL: String = "http://localhost:9000/"
 const AUTH_URL: String = "authorization-service/"
@@ -31,7 +32,8 @@ var _http_requests: Dictionary = {
 	"join_category_request": HTTPRequest.new(),
 	"update_collection_request": HTTPRequest.new(),
 	"get_words_request": HTTPRequest.new(),
-	"create_new_word_request": HTTPRequest.new()
+	"create_new_word_request": HTTPRequest.new(),
+	"word_answer_request": HTTPRequest.new()
 }
 
 var _http_client: HTTPClient = HTTPClient.new()
@@ -61,8 +63,11 @@ signal get_words_request_ok(response)
 signal get_words_request_error(error_message)
 signal create_new_word_request_ok(response)
 signal create_new_word_request_error(error_message)
+signal word_answer_request_ok(response)
+signal word_answer_request_error(error_message)
 
 signal choose_collection(collection)
+signal play_collection(collection)
 signal choose_word(word)
 
 func _ready():
@@ -158,6 +163,11 @@ func _on_create_new_word_request_completed(result: int, response_code: int, head
 	if response.empty():
 		return
 
+func _on_word_answer_request_completed(result: int, response_code: int, headers: PoolStringArray, body: PoolByteArray):
+	var response: Dictionary = _get_response(response_code, body, RequestType.WORD_ANSWER)
+	if response.empty():
+		return
+
 func login(username: String, password: String):
 	var headers: PoolStringArray = [
 		"Authorization: " + "Basic " + Marshalls.utf8_to_base64("browser:"),
@@ -205,7 +215,6 @@ func create_new_category(name: String, description: String, difficulty: String):
 		"description": description,
 		"difficulty": difficulty
 	}
-	print(body)
 	_http_requests["create_new_category_request"].request(CATEGORIES_URL, headers, false, HTTPClient.METHOD_POST, JSON.print(body))
 
 func get_collections():
@@ -222,6 +231,9 @@ func join_category(id: int):
 
 func choose_collection(collection):
 	emit_signal("choose_collection", collection)
+
+func play_collection(collection):
+	emit_signal("play_collection", collection)
 
 func choose_word(word):
 	emit_signal("choose_word", word)
@@ -255,6 +267,11 @@ func create_new_word(id: int, pl_trans: String, eng_trans: String, difficulty: S
 		"difficulty": difficulty,
 		"engExamples": examples.split("\n")
 	}
-	print(body)
 	_http_requests["create_new_word_request"].request(COLLECTIONS_URL + String(id) + "/words", headers, false, HTTPClient.METHOD_POST, JSON.print(body))
+
+func word_answer(collection_id: int, word_id: int, is_correct: bool):
+	var headers: PoolStringArray = [
+		"Authorization: " + _token
+	]
+	_http_requests["word_answer_request"].request(COLLECTIONS_URL + String(collection_id) + "/words/" + String(word_id) + "/answer/" + String(is_correct), headers, false, HTTPClient.METHOD_POST)
 

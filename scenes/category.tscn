@@ -12,12 +12,30 @@ margin_right = 200.0
 margin_bottom = 91.0
 
 [node name="Button" type="Button" parent="VBoxContainer"]
+margin_top = 10.0
+margin_right = 98.0
+margin_bottom = 68.0
+text = "Edit"
+
+[node name="PlayButton" type="Button" parent="VBoxContainer"]
+margin_left = 99.0
+margin_top = 10.0
 margin_right = 199.0
-margin_bottom = 91.0
+margin_bottom = 68.0
+text = "Play"
+
+[node name="JoinButton" type="Button" parent="VBoxContainer"]
+margin_left = -1.0
+margin_top = 10.0
+margin_right = 199.0
+margin_bottom = 68.0
+text = "Click to join"
 
 [node name="NameLabel" type="Label" parent="VBoxContainer"]
-margin_right = 200.0
-margin_bottom = 50.0
+margin_left = -0.773773
+margin_top = 0.773788
+margin_right = 199.226
+margin_bottom = 50.7738
 text = "Name
 "
 align = 1
@@ -33,9 +51,9 @@ value = 5.0
 percent_visible = false
 
 [node name="DifficultyLabel" type="Label" parent="VBoxContainer/DifficultyLevel"]
-margin_top = -15.422
+margin_top = -12.3269
 margin_right = 200.0
-margin_bottom = -1.422
+margin_bottom = 1.67311
 text = "Difficulty"
 align = 1
 valign = 1
@@ -48,3 +66,5 @@ margin_bottom = 19.7158
 text = "0/10"
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/JoinButton" to="." method="_on_JoinButton_pressed"]
