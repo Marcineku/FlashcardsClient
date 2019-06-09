@@ -9,7 +9,266 @@ script = ExtResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 
+[node name="TabContainer" type="TabContainer" parent="GUI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+tab_align = 0
+
+[node name="Categories" type="Control" parent="GUI/TabContainer"]
+editor/display_folded = true
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="GUI/TabContainer/Categories"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="GridContainer" type="GridContainer" parent="GUI/TabContainer/Categories/ScrollContainer"]
+custom_constants/vseparation = 120
+custom_constants/hseparation = 260
+columns = 4
+
+[node name="Add category" type="Control" parent="GUI/TabContainer"]
+editor/display_folded = true
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Label2" type="Label" parent="GUI/TabContainer/Add category"]
+margin_left = 384.484
+margin_top = 76.8553
+margin_right = 424.484
+margin_bottom = 90.8553
+text = "Name"
+
+[node name="LineEdit" type="LineEdit" parent="GUI/TabContainer/Add category"]
+margin_left = 381.501
+margin_top = 94.5053
+margin_right = 660.501
+margin_bottom = 118.505
+
+[node name="Label" type="Label" parent="GUI/TabContainer/Add category"]
+margin_left = 384.207
+margin_top = 130.262
+margin_right = 458.207
+margin_bottom = 144.262
+text = "Description"
+
+[node name="TextEdit" type="TextEdit" parent="GUI/TabContainer/Add category"]
+margin_left = 382.0
+margin_top = 143.053
+margin_right = 661.0
+margin_bottom = 271.053
+
+[node name="SubmitNewCategoryButton" type="Button" parent="GUI/TabContainer/Add category"]
+margin_left = 459.0
+margin_top = 365.0
+margin_right = 566.0
+margin_bottom = 402.0
+text = "Submit"
+
+[node name="SpinBox" type="SpinBox" parent="GUI/TabContainer/Add category"]
+margin_left = 384.997
+margin_top = 300.998
+margin_right = 458.997
+margin_bottom = 324.998
+max_value = 10.0
+
+[node name="Label3" type="Label" parent="GUI/TabContainer/Add category"]
+margin_left = 384.997
+margin_top = 282.998
+margin_right = 441.997
+margin_bottom = 296.998
+text = "Difficulty"
+
+[node name="Collections" type="Control" parent="GUI/TabContainer"]
+editor/display_folded = true
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="GUI/TabContainer/Collections"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="GridContainer" parent="GUI/TabContainer/Collections/ScrollContainer"]
+custom_constants/vseparation = 120
+custom_constants/hseparation = 260
+columns = 4
+
+[node name="Edit collection" type="Control" parent="GUI/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="EditCollection" type="Control" parent="GUI/TabContainer/Edit collection"]
+editor/display_folded = true
+margin_top = 54.7364
+margin_right = 228.0
+margin_bottom = 359.736
+
+[node name="Edit collection" type="Label" parent="GUI/TabContainer/Edit collection/EditCollection"]
+margin_left = 63.2102
+margin_top = -51.2105
+margin_right = 154.21
+margin_bottom = -37.2105
+text = "Edit collection"
+
+[node name="Label" type="Label" parent="GUI/TabContainer/Edit collection/EditCollection"]
+margin_left = 22.1051
+margin_top = 5.26311
+margin_right = 62.1051
+margin_bottom = 19.2631
+text = "Name"
+
+[node name="LineEdit" type="LineEdit" parent="GUI/TabContainer/Edit collection/EditCollection"]
+margin_left = 20.0
+margin_top = 32.7367
+margin_right = 212.0
+margin_bottom = 56.7367
+
+[node name="Label2" type="Label" parent="GUI/TabContainer/Edit collection/EditCollection"]
+margin_left = 21.0524
+margin_top = 66.3152
+margin_right = 95.0524
+margin_bottom = 80.3152
+text = "Description"
+
+[node name="TextEdit" type="TextEdit" parent="GUI/TabContainer/Edit collection/EditCollection"]
+margin_left = 20.9474
+margin_top = 89.1051
+margin_right = 212.947
+margin_bottom = 180.105
+
+[node name="CheckBox" type="CheckBox" parent="GUI/TabContainer/Edit collection/EditCollection"]
+margin_left = 19.9998
+margin_top = 201.051
+margin_right = 103.0
+margin_bottom = 225.051
+text = "Is public"
+
+[node name="EditCollectionButton" type="Button" parent="GUI/TabContainer/Edit collection/EditCollection"]
+margin_left = 24.0
+margin_top = 236.737
+margin_right = 108.0
+margin_bottom = 274.737
+text = "Submit"
+
+[node name="AddWord" type="Control" parent="GUI/TabContainer/Edit collection"]
+editor/display_folded = true
+margin_left = 246.0
+margin_top = 56.789
+margin_right = 483.0
+margin_bottom = 478.789
+
+[node name="Label5" type="Label" parent="GUI/TabContainer/Edit collection/AddWord"]
+margin_left = 69.1649
+margin_top = -52.9097
+margin_right = 159.165
+margin_bottom = -38.9097
+text = "Add new word"
+
+[node name="Label" type="Label" parent="GUI/TabContainer/Edit collection/AddWord"]
+margin_right = 237.0
+margin_bottom = 14.0
+text = "PL translation"
+
+[node name="TextEdit" type="TextEdit" parent="GUI/TabContainer/Edit collection/AddWord"]
+margin_top = 17.0
+margin_right = 237.0
+margin_bottom = 79.0
+
+[node name="Label2" type="Label" parent="GUI/TabContainer/Edit collection/AddWord"]
+margin_top = 94.0
+margin_right = 237.0
+margin_bottom = 108.0
+text = "ENG translation"
+
+[node name="TextEdit2" type="TextEdit" parent="GUI/TabContainer/Edit collection/AddWord"]
+margin_top = 115.0
+margin_right = 237.0
+margin_bottom = 173.0
+
+[node name="Label3" type="Label" parent="GUI/TabContainer/Edit collection/AddWord"]
+margin_top = 188.0
+margin_right = 237.0
+margin_bottom = 202.0
+text = "Difficulty"
+
+[node name="SpinBox" type="SpinBox" parent="GUI/TabContainer/Edit collection/AddWord"]
+margin_top = 207.263
+margin_right = 237.0
+margin_bottom = 231.263
+max_value = 10.0
+
+[node name="Label4" type="Label" parent="GUI/TabContainer/Edit collection/AddWord"]
+margin_top = 252.316
+margin_right = 237.0
+margin_bottom = 266.316
+text = "ENG examples"
+
+[node name="TextEdit3" type="TextEdit" parent="GUI/TabContainer/Edit collection/AddWord"]
+margin_top = 278.0
+margin_right = 237.0
+margin_bottom = 380.0
+
+[node name="NewWordButton" type="Button" parent="GUI/TabContainer/Edit collection/AddWord"]
+margin_top = 400.0
+margin_right = 237.0
+margin_bottom = 420.0
+text = "Submit"
+
+[node name="Words" type="ScrollContainer" parent="GUI/TabContainer/Edit collection"]
+editor/display_folded = true
+margin_left = 531.0
+margin_top = 59.0
+margin_right = 794.0
+margin_bottom = 565.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/TabContainer/Edit collection/Words"]
+custom_constants/separation = 300
+
+[node name="Examples" type="ScrollContainer" parent="GUI/TabContainer/Edit collection"]
+margin_left = 793.0
+margin_top = 59.0
+margin_right = 1018.0
+margin_bottom = 564.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GUI/TabContainer/Edit collection/Examples"]
+custom_constants/separation = 100
+
+[node name="Label" type="Label" parent="GUI/TabContainer/Edit collection"]
+margin_left = 636.822
+margin_top = 1.16635
+margin_right = 752.822
+margin_bottom = 15.1664
+text = "Collection's words"
+
+[node name="Label2" type="Label" parent="GUI/TabContainer/Edit collection"]
+margin_left = 859.593
+margin_top = -1.16635
+margin_right = 969.593
+margin_bottom = 12.8336
+text = "Word's examples"
+
 [node name="HelloLabel" type="Label" parent="GUI"]
+visible = false
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -75.0
@@ -20,46 +279,14 @@ margin_bottom = 34.0
 [node name="LogoutButton" type="Button" parent="GUI"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -179.0
-margin_top = 20.0
-margin_right = -20.0
-margin_bottom = 56.0
+margin_left = -56.0
+margin_top = 2.0
+margin_right = -1.0
+margin_bottom = 22.0
 text = "Logout"
 
-[node name="Label" type="Label" parent="GUI"]
-margin_left = 475.471
-margin_top = 55.0925
-margin_right = 542.471
-margin_bottom = 69.0925
-text = "Categories"
-
-[node name="Tabs" type="Tabs" parent="GUI"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -20.0
-margin_top = -12.0
-margin_right = 20.0
-margin_bottom = 12.0
-
-[node name="Categories" type="ScrollContainer" parent="GUI/Tabs"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -100.0
-margin_top = -218.5
-margin_right = 100.0
-margin_bottom = 218.5
-
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI/Tabs/Categories"]
-custom_constants/separation = 120
-
-[node name="Collections" type="ScrollContainer" parent="GUI/Tabs"]
-margin_right = 12.0
-margin_bottom = 12.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="GUI/Tabs/Collections"]
-
+[connection signal="tab_selected" from="GUI/TabContainer" to="." method="_on_TabContainer_tab_selected"]
+[connection signal="pressed" from="GUI/TabContainer/Add category/SubmitNewCategoryButton" to="." method="_on_SubmitNewCategoryButton_pressed"]
+[connection signal="pressed" from="GUI/TabContainer/Edit collection/EditCollection/EditCollectionButton" to="." method="_on_EditCollectionButton_pressed"]
+[connection signal="pressed" from="GUI/TabContainer/Edit collection/AddWord/NewWordButton" to="." method="_on_NewWordButton_pressed"]
 [connection signal="pressed" from="GUI/LogoutButton" to="." method="_on_LogoutButton_pressed"]

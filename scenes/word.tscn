@@ -1,0 +1,99 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scripts/word.gd" type="Script" id=1]
+
+[node name="word" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="VBoxContainer" type="Button" parent="."]
+editor/display_folded = true
+margin_right = 257.0
+margin_bottom = 253.0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_left = 69.8055
+margin_top = 9.97221
+margin_right = 183.806
+margin_bottom = 23.9722
+text = "ENG Tranlation"
+align = 1
+
+[node name="engTrans" type="Label" parent="VBoxContainer"]
+margin_left = 69.8055
+margin_top = 28.9722
+margin_right = 183.806
+margin_bottom = 42.9722
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+margin_left = 69.8055
+margin_top = 47.9722
+margin_right = 183.806
+margin_bottom = 61.9722
+text = "PL Tranlation"
+align = 1
+
+[node name="plTrans" type="Label" parent="VBoxContainer"]
+margin_left = 69.8055
+margin_top = 66.9722
+margin_right = 183.806
+margin_bottom = 80.9722
+
+[node name="Label3" type="Label" parent="VBoxContainer"]
+margin_left = 69.8055
+margin_top = 85.9722
+margin_right = 183.806
+margin_bottom = 99.9722
+text = "Correct answers"
+align = 1
+
+[node name="correctAnswers" type="Label" parent="VBoxContainer"]
+margin_left = 69.8055
+margin_top = 104.972
+margin_right = 183.806
+margin_bottom = 118.972
+
+[node name="Label4" type="Label" parent="VBoxContainer"]
+margin_left = 69.8055
+margin_top = 123.972
+margin_right = 183.806
+margin_bottom = 137.972
+text = "Incorrect answers"
+align = 1
+
+[node name="incorrectAnswers" type="Label" parent="VBoxContainer"]
+margin_left = 69.8055
+margin_top = 142.972
+margin_right = 183.806
+margin_bottom = 156.972
+
+[node name="Label5" type="Label" parent="VBoxContainer"]
+margin_left = 69.8055
+margin_top = 161.972
+margin_right = 183.806
+margin_bottom = 175.972
+text = "Difficulty"
+align = 1
+
+[node name="difficulty" type="Label" parent="VBoxContainer"]
+margin_left = 69.8055
+margin_top = 180.972
+margin_right = 183.806
+margin_bottom = 194.972
+
+[node name="Label6" type="Label" parent="VBoxContainer"]
+margin_left = 69.8055
+margin_top = 199.972
+margin_right = 183.806
+margin_bottom = 213.972
+text = "Is learned"
+align = 1
+
+[node name="learned" type="Label" parent="VBoxContainer"]
+margin_left = 69.8055
+margin_top = 218.972
+margin_right = 183.806
+margin_bottom = 232.972
+
+[connection signal="pressed" from="VBoxContainer" to="." method="_on_VBoxContainer_pressed"]

@@ -47,3 +47,4 @@ margin_right = 113.501
 margin_bottom = 19.7158
 text = "0/10"
 
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_Button_pressed"]

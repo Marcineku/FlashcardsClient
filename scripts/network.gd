@@ -5,6 +5,12 @@ class RequestType:
 	const USER_DATA: String = "user_data"
 	const REGISTER: String = "register"
 	const GET_CATEGORIES: String = "get_categories"
+	const CREATE_NEW_CATEGORY: String = "create_new_category"
+	const GET_COLLECTIONS: String = "get_collections"
+	const JOIN_CATEGORY: String = "join_category"
+	const UPDATE_COLLECTION: String = "update_collection"
+	const GET_WORDS: String = "get_words"
+	const CREATE_NEW_WORD: String = "create_new_word"
 
 const HOST_URL: String = "http://localhost:9000/"
 const AUTH_URL: String = "authorization-service/"
@@ -13,13 +19,19 @@ const LOGIN_URL: String = HOST_URL + AUTH_URL + "oauth/token"
 const USER_DATA_URL: String = HOST_URL + AUTH_URL + "users/current"
 const REGISTER_URL: String = HOST_URL + DB_URL + "users"
 const CATEGORIES_URL: String = HOST_URL + DB_URL + "categories/"
+const COLLECTIONS_URL: String = HOST_URL + DB_URL + "collections/"
 
 var _http_requests: Dictionary = {
 	"login_request": HTTPRequest.new(),
 	"user_data_request": HTTPRequest.new(),
 	"register_request": HTTPRequest.new(),
 	"get_categories_request": HTTPRequest.new(),
-	#"create_new_categorie_request": HTTPRequest.new()
+	"create_new_category_request": HTTPRequest.new(),
+	"get_collections_request": HTTPRequest.new(),
+	"join_category_request": HTTPRequest.new(),
+	"update_collection_request": HTTPRequest.new(),
+	"get_words_request": HTTPRequest.new(),
+	"create_new_word_request": HTTPRequest.new()
 }
 
 var _http_client: HTTPClient = HTTPClient.new()
@@ -37,8 +49,21 @@ signal register_request_ok(response)
 signal register_request_error(error_message)
 signal get_categories_request_ok(response)
 signal get_categories_request_error(error_message)
-signal create_new_categorie_request_ok(response)
-signal create_new_categorie_request_error(error_message)
+signal create_new_category_request_ok(response)
+signal create_new_category_request_error(error_message)
+signal get_collections_request_ok(response)
+signal get_collections_request_error(error_message)
+signal join_category_request_ok(response)
+signal join_category_request_error(error_message)
+signal update_collection_request_ok(response)
+signal update_collection_request_error(error_message)
+signal get_words_request_ok(response)
+signal get_words_request_error(error_message)
+signal create_new_word_request_ok(response)
+signal create_new_word_request_error(error_message)
+
+signal choose_collection(collection)
+signal choose_word(word)
 
 func _ready():
 	var request_names = _http_requests.keys();
@@ -48,7 +73,6 @@ func _ready():
 
 func _get_response(response_code: int, body: PoolByteArray, request_type: String) -> Dictionary:
 	var parseResult: JSONParseResult = JSON.parse(body.get_string_from_utf8())
-	
 	if parseResult.error != OK:
 		emit_signal(request_type + "_request_error", "Invalid JSON response")
 		return {}
@@ -104,6 +128,36 @@ func _on_get_categories_request_completed(result: int, response_code: int, heade
 	if response.empty():
 		return
 
+func _on_create_new_category_request_completed(result: int, response_code: int, headers: PoolStringArray, body: PoolByteArray):
+	var response: Dictionary = _get_response(response_code, body, RequestType.CREATE_NEW_CATEGORY)
+	if response.empty():
+		return
+
+func _on_get_collections_request_completed(result: int, response_code: int, headers: PoolStringArray, body: PoolByteArray):
+	var response: Dictionary = _get_response(response_code, body, RequestType.GET_COLLECTIONS)
+	if response.empty():
+		return
+
+func _on_join_category_request_completed(result: int, response_code: int, headers: PoolStringArray, body: PoolByteArray):
+	var response: Dictionary = _get_response(response_code, body, RequestType.JOIN_CATEGORY)
+	if response.empty():
+		return
+
+func _on_update_collection_request_completed(result: int, response_code: int, headers: PoolStringArray, body: PoolByteArray):
+	var response: Dictionary = _get_response(response_code, body, RequestType.UPDATE_COLLECTION)
+	if response.empty():
+		return
+
+func _on_get_words_request_completed(result: int, response_code: int, headers: PoolStringArray, body: PoolByteArray):
+	var response: Dictionary = _get_response(response_code, body, RequestType.GET_WORDS)
+	if response.empty():
+		return
+
+func _on_create_new_word_request_completed(result: int, response_code: int, headers: PoolStringArray, body: PoolByteArray):
+	var response: Dictionary = _get_response(response_code, body, RequestType.CREATE_NEW_WORD)
+	if response.empty():
+		return
+
 func login(username: String, password: String):
 	var headers: PoolStringArray = [
 		"Authorization: " + "Basic " + Marshalls.utf8_to_base64("browser:"),
@@ -140,3 +194,67 @@ func get_categories():
 		"Authorization: " + _token
 	]
 	_http_requests["get_categories_request"].request(CATEGORIES_URL, headers, false, HTTPClient.METHOD_GET)
+
+func create_new_category(name: String, description: String, difficulty: String):
+	var headers: PoolStringArray = [
+		"Content-Type: application/json",
+		"Authorization: " + _token
+	]
+	var body: Dictionary = {
+		"name": name,
+		"description": description,
+		"difficulty": difficulty
+	}
+	print(body)
+	_http_requests["create_new_category_request"].request(CATEGORIES_URL, headers, false, HTTPClient.METHOD_POST, JSON.print(body))
+
+func get_collections():
+	var headers: PoolStringArray = [
+		"Authorization: " + _token
+	]
+	_http_requests["get_collections_request"].request(COLLECTIONS_URL, headers, false, HTTPClient.METHOD_GET)
+
+func join_category(id: int):
+	var headers: PoolStringArray = [
+		"Authorization: " + _token
+	]
+	_http_requests["get_collections_request"].request(CATEGORIES_URL + String(id) + "/join", headers, false, HTTPClient.METHOD_POST)
+
+func choose_collection(collection):
+	emit_signal("choose_collection", collection)
+
+func choose_word(word):
+	emit_signal("choose_word", word)
+
+func update_collection(id: int, name: String, description: String, is_public: bool):
+	var headers: PoolStringArray = [
+		"Content-Type: application/json",
+		"Authorization: " + _token
+	]
+	var body: Dictionary = {
+		"name": name,
+		"description": description,
+		"isPublic": is_public
+	}
+	_http_requests["update_collection_request"].request(COLLECTIONS_URL + String(id), headers, false, HTTPClient.METHOD_PUT, JSON.print(body))
+
+func get_words(id: int):
+	var headers: PoolStringArray = [
+		"Authorization: " + _token
+	]
+	_http_requests["get_words_request"].request(COLLECTIONS_URL + String(id) + "/words", headers, false, HTTPClient.METHOD_GET)
+
+func create_new_word(id: int, pl_trans: String, eng_trans: String, difficulty: String, examples: String):
+	var headers: PoolStringArray = [
+		"Content-Type: application/json",
+		"Authorization: " + _token
+	]
+	var body: Dictionary = {
+		"plTranslation": pl_trans,
+		"engTranslation": eng_trans,
+		"difficulty": difficulty,
+		"engExamples": examples.split("\n")
+	}
+	print(body)
+	_http_requests["create_new_word_request"].request(COLLECTIONS_URL + String(id) + "/words", headers, false, HTTPClient.METHOD_POST, JSON.print(body))
+
