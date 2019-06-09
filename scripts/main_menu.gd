@@ -7,6 +7,8 @@ class Collection:
 	var _description: String = "Description"
 	var _difficulty: int = 0
 	var _public: bool = false
+	var _learning_progress: int = 0
+	var _modifiable: bool = false
 
 class Word:
 	var _word_id: int = -1
@@ -79,12 +81,14 @@ func _unhandled_input(event: InputEvent) -> void:
 		_on_SwapButton_pressed()
 
 func _copy_collection(category):
-	chosen_collection._category_id = category._category_id - 1
+	chosen_collection._category_id = category._collection_id
 	chosen_collection._is_category = category._is_category
 	chosen_collection._name = category._name
 	chosen_collection._description = category._description
 	chosen_collection._difficulty = category._difficulty
 	chosen_collection._public = category._public
+	chosen_collection._learning_progress = category._learning_progress
+	chosen_collection._modifiable = category._modifiable
 
 func _on_user_data_request_ok(response: Dictionary):
 	HelloLabel.text = "Hello " + network.user_full_name + "!"
@@ -109,6 +113,7 @@ func _on_get_collections_request_ok(response):
 	for item in response:
 		var new_collection = category.instance()
 		new_collection.init(item.category, false)
+		new_collection.init_collection(item)
 		CollectionsContainer.add_child(new_collection)
 	
 	for i in range(4):
@@ -134,7 +139,7 @@ func _on_get_words_request_ok(response):
 	for word in words:
 		words_eng.append(word["engTranslation"])
 		words_pl.append(word["plTranslation"])
-	if words_eng.size() > 0 && words_pl.size() > 0:
+	if words_eng.size() > 1 && words_pl.size() > 1:
 		Main.init(words_eng, words_pl)
 	if collection_chosen:
 		Tabs.current_tab = 4
@@ -206,8 +211,9 @@ func _on_PlayButton_pressed():
 	randomize()
 	words_order.shuffle()
 	
-	Main.init(words_eng, words_order)
-	Main.swap()
+	if words_eng.size() > 1 && !words_order.size() > 1:
+		Main.init(words_eng, words_order)
+		Main.swap()
 	is_playing = true
 	Answers.visible = true
 	
@@ -223,7 +229,8 @@ func _generate_answers():
 		for word in words:
 			words_eng.append(word["engTranslation"])
 			words_pl.append(word["plTranslation"])
-		Main.init(words_eng, words_pl)
+		if words_eng.size() > 1 && words_pl.size() > 1:
+			Main.init(words_eng, words_pl)
 		return
 	
 	current_word = words_order.pop_front()

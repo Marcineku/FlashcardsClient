@@ -14,13 +14,15 @@ anchor_bottom = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 tab_align = 0
+drag_to_rearrange_enabled = true
 
 [node name="Categories" type="Control" parent="GUI/TabContainer"]
 editor/display_folded = true
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 32.0
+margin_top = 24.0
 margin_right = -4.0
 margin_bottom = -4.0
 
@@ -39,7 +41,7 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 32.0
+margin_top = 24.0
 margin_right = -4.0
 margin_bottom = -4.0
 
@@ -96,7 +98,7 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 32.0
+margin_top = 24.0
 margin_right = -4.0
 margin_bottom = -4.0
 
@@ -115,7 +117,7 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 32.0
+margin_top = 24.0
 margin_right = -4.0
 margin_bottom = -4.0
 
@@ -271,11 +273,11 @@ margin_bottom = 12.8336
 text = "Word's examples"
 
 [node name="Play" type="Control" parent="GUI/TabContainer"]
-visible = false
+editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
-margin_top = 32.0
+margin_top = 24.0
 margin_right = -4.0
 margin_bottom = -4.0
 
@@ -320,60 +322,56 @@ text = "Switch language(w)"
 
 [node name="Answers" type="Control" parent="GUI/TabContainer/Play"]
 margin_left = 383.737
-margin_top = 310.684
+margin_top = 342.673
 margin_right = 686.737
-margin_bottom = 486.684
+margin_bottom = 518.673
 
 [node name="Answer1" type="Button" parent="GUI/TabContainer/Play/Answers"]
-margin_left = 29.1053
-margin_top = -2.10556
-margin_right = 255.105
-margin_bottom = 21.8944
+margin_top = -11.9746
+margin_right = 303.0
+margin_bottom = 28.0254
 
 [node name="Label1" type="Label" parent="GUI/TabContainer/Play/Answers/Answer1"]
-margin_left = -47.1552
-margin_top = 8.75552
-margin_right = -7.15515
-margin_bottom = 22.7555
+margin_left = -14.8021
+margin_top = 3.64715
+margin_right = 25.1979
+margin_bottom = 17.6472
 text = "1."
 
 [node name="Answer2" type="Button" parent="GUI/TabContainer/Play/Answers"]
-margin_left = 27.0
-margin_top = 26.0
-margin_right = 251.0
-margin_bottom = 63.0
+margin_top = 41.6468
+margin_right = 303.0
+margin_bottom = 81.6468
 
 [node name="Label2" type="Label" parent="GUI/TabContainer/Play/Answers/Answer2"]
-margin_left = -43.1499
-margin_top = 17.6996
-margin_right = -3.1499
-margin_bottom = 31.6996
+margin_left = -14.8835
+margin_top = 3.39613
+margin_right = 25.1165
+margin_bottom = 17.3961
 text = "2."
 
 [node name="Answer3" type="Button" parent="GUI/TabContainer/Play/Answers"]
-margin_left = 29.0
-margin_top = 67.7366
-margin_right = 250.0
-margin_bottom = 102.737
+margin_top = 90.2263
+margin_right = 303.0
+margin_bottom = 130.226
 
 [node name="Label3" type="Label" parent="GUI/TabContainer/Play/Answers/Answer3"]
-margin_left = -44.1999
-margin_top = 11.1128
-margin_right = -4.19989
-margin_bottom = 25.1128
+margin_left = -14.5713
+margin_top = 4.98277
+margin_right = 25.4287
+margin_bottom = 18.9828
 text = "3."
 
 [node name="Answer4" type="Button" parent="GUI/TabContainer/Play/Answers"]
-margin_left = 33.0526
-margin_top = 108.578
-margin_right = 257.053
-margin_bottom = 142.578
+margin_top = 138.176
+margin_right = 303.0
+margin_bottom = 178.176
 
 [node name="Label4" type="Label" parent="GUI/TabContainer/Play/Answers/Answer4"]
-margin_left = -44.4525
-margin_top = 11.121
-margin_right = -4.45251
-margin_bottom = 25.121
+margin_left = -14.8239
+margin_top = 2.60702
+margin_right = 25.1761
+margin_bottom = 16.607
 text = "4."
 
 [node name="HelloLabel" type="Label" parent="GUI"]

@@ -8,6 +8,9 @@ onready var EditButton: Button = $VBoxContainer/Button
 onready var PlayButton: Button = $VBoxContainer/PlayButton
 
 var _category_id: int = 0
+var _collection_id: int = 0
+var _learning_progress: int = 0
+var _modifiable: bool = false
 var _is_category: bool = true
 var _name: String = "Name"
 var _description: String = "Description"
@@ -35,6 +38,11 @@ func init(data: Dictionary, is_category: bool):
 	_difficulty = data["difficulty"]
 	_public = data["public"]
 	_is_category = is_category
+
+func init_collection(data: Dictionary):
+	_collection_id = data["collectionId"]
+	_learning_progress = data["learningProgress"]
+	_modifiable = data["modifiable"]
 
 func _on_Button_pressed():
 	if _is_category:

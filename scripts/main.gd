@@ -42,6 +42,9 @@ func init(words_eng: Array, words_pl: Array):
 		CurrentText.text = _words_pl[_wrd_iter]
 
 func swap() -> void:
+	if _words_eng.size() <= 1 || _words_pl.size() <= 1:
+		return
+	
 	if _is_eng_displaying:
 		_is_eng_displaying = false
 		CurrentText.text = _words_pl[_wrd_iter]
@@ -50,6 +53,9 @@ func swap() -> void:
 		CurrentText.text = _words_eng[_wrd_iter]
 
 func play() -> void:
+	if _words_eng.size() <= 1 || _words_pl.size() <= 1:
+		return
+	
 	_wrd_iter += 1
 	if _wrd_iter >= _words_eng.size():
 		_wrd_iter = 0

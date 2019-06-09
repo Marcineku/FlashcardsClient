@@ -22,7 +22,7 @@ margin_right = 200.0
 margin_bottom = 100.0
 rect_pivot_offset = Vector2( -602, -75 )
 
-[node name="Login" type="VBoxContainer" parent="GUI/Tabs"]
+[node name="Login" type="Control" parent="GUI/Tabs"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -32,14 +32,14 @@ margin_bottom = -4.0
 
 [node name="UsernameLine" type="LineEdit" parent="GUI/Tabs/Login"]
 margin_right = 392.0
-margin_bottom = 24.0
+margin_bottom = 35.0
 clear_button_enabled = true
 placeholder_text = "Username"
 
 [node name="PasswordLine" type="LineEdit" parent="GUI/Tabs/Login"]
-margin_top = 28.0
+margin_top = 44.8421
 margin_right = 392.0
-margin_bottom = 52.0
+margin_bottom = 79.8421
 secret = true
 clear_button_enabled = true
 placeholder_text = "Password"
@@ -53,9 +53,9 @@ align = 1
 valign = 1
 
 [node name="LoginButton" type="Button" parent="GUI/Tabs/Login"]
-margin_top = 74.0
+margin_top = 125.579
 margin_right = 392.0
-margin_bottom = 94.0
+margin_bottom = 165.579
 text = "Login"
 
 [node name="RegistrationInfo" type="Label" parent="GUI/Tabs/Login"]
@@ -64,7 +64,7 @@ margin_right = 392.0
 margin_bottom = 112.0
 custom_colors/font_color = Color( 0, 1, 0.0862745, 1 )
 
-[node name="Registration" type="VBoxContainer" parent="GUI/Tabs"]
+[node name="Registration" type="Control" parent="GUI/Tabs"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -108,9 +108,9 @@ margin_bottom = 126.0
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 
 [node name="RegistrationButton" type="Button" parent="GUI/Tabs/Registration"]
-margin_top = 130.0
+margin_top = 124.737
 margin_right = 392.0
-margin_bottom = 150.0
+margin_bottom = 164.737
 text = "Register"
 
 [connection signal="pressed" from="GUI/Tabs/Login/LoginButton" to="." method="_on_LoginButton_pressed"]
